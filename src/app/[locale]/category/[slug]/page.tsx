@@ -1,5 +1,7 @@
  
 
+export const runtime = "edge";
+
 import { getCategories, getGames } from "@/actions";
 import { Locale } from "@/i18n/routing";
 import {

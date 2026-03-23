@@ -1,5 +1,7 @@
  
 
+export const runtime = "edge";
+
 import BaseLayout from "@/components/basic-layout";
 import { routing } from "@/i18n/routing";
 

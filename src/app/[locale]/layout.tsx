@@ -8,6 +8,8 @@ import { LightMode } from "@chakra-ui/react";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 
+export const runtime = "edge";
+
 const ElClick = dynamic(() => import("@/components/el-click/index"), { ssr: false })
 interface Props extends PropsWithChildren {
   params: { locale: Locale };

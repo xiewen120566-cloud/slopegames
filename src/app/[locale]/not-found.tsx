@@ -1,5 +1,7 @@
  
 
+export const runtime = "edge";
+
 import { Container, Text } from "@chakra-ui/react";
 import { useTranslations } from "next-intl";
 
