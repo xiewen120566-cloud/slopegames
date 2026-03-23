@@ -63,6 +63,14 @@ export default async function Page({
           data-full-width-responsive="true"
           style={{ display: "block" }}
         />
+        <ElTemplate 
+          id="goplaygame-Home-MultiAd"
+          className="adsbygoogle"
+          data-ad-client="ca-pub-3991461507516186"
+          data-ad-slot="2282977275"
+          data-ad-format="autorelaxed"
+          style={{ display: "block" }}
+        />
         <VStack alignItems="stretch" gap={5}>
           <Card
             shadow="unset"
