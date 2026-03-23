@@ -100,12 +100,11 @@ export default async function Page({
       </AspectRatio>
       <Container maxWidth="container.xl" p={0}>
         <ElTemplate 
-          id="goplaygame-Detail-Banner"
+          id="goplaygame-Detail-MultiAd"
           className="adsbygoogle"
           data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2203654449"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
+          data-ad-slot="2282977275"
+          data-ad-format="autorelaxed"
           style={{ display: "block" }}
         />
       </Container>
@@ -219,11 +218,12 @@ export default async function Page({
         </Card>
         <Info locale={locale} />
         <ElTemplate 
-          id="goplaygame-Detail-MultiAd"
+          id="goplaygame-Detail-Banner"
           className="adsbygoogle"
           data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2282977275"
-          data-ad-format="autorelaxed"
+          data-ad-slot="2203654449"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
           style={{ display: "block" }}
         />
       </Container>
