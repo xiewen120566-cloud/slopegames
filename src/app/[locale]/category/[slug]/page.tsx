@@ -36,7 +36,15 @@ export default async function Page({
   params: { locale, slug },
   searchParams,
 }: Props) {
-  const { hostname } = new URL(process.env.BASE_URL);
+  const baseUrlInput = (process.env.BASE_URL ?? "")
+    .trim()
+    .replace(/^['"]+|['"]+$/g, "");
+  const baseUrl = baseUrlInput || "https://slopegames.net";
+  const normalizedBaseUrl =
+    baseUrl.startsWith("http://") || baseUrl.startsWith("https://")
+      ? baseUrl
+      : `https://${baseUrl}`;
+  const { hostname } = new URL(normalizedBaseUrl);
   const categories = await getCategories(locale);
   const allGames = await getGames(locale);
   const t = await getTranslations({ locale, namespace: "Common" });
