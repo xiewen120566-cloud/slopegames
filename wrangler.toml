@@ -3,6 +3,7 @@
 "$schema" = "node_modules/wrangler/config-schema.json"
 name = "slopegames"
 main = ".open-next/worker.js"
+pages_build_output_dir = ".next/static"
 compatibility_date = "2025-04-01"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 upload_source_maps = true
