@@ -17,19 +17,42 @@ interface AdTemplateProps {
 const ElTemplate = forwardRef<HTMLModElement, AdTemplateProps>(function AdTemplate(props, ref) {
   useAdDisplay(`#${props.id}`);
   useEffect(() => {
-    const timer = window.setTimeout(() => {
+    let cancelled = false;
+    let timer: number | undefined;
+    let attempts = 0;
+    const maxAttempts = 60;
+
+    const tick = () => {
+      if (cancelled) return;
       const ins = document.getElementById(props.id);
-      if (!ins) return;
+      if (!ins) {
+        attempts += 1;
+        if (attempts < maxAttempts) timer = window.setTimeout(tick, 150);
+        return;
+      }
+
+      if (ins.getAttribute("data-ads-pushed") === "1") return;
+
       const status = ins.getAttribute("data-adsbygoogle-status") || ins.getAttribute("data-ad-status");
       if (status) return;
+
       try {
         const w = window as unknown as { adsbygoogle?: unknown[] };
         const q = (w.adsbygoogle ?? []) as unknown[];
         w.adsbygoogle = q;
+        ins.setAttribute("data-ads-pushed", "1");
         q.push({});
       } catch {}
-    }, 0);
-    return () => window.clearTimeout(timer);
+
+      attempts += 1;
+      if (attempts < maxAttempts) timer = window.setTimeout(tick, 250);
+    };
+
+    timer = window.setTimeout(tick, 0);
+    return () => {
+      cancelled = true;
+      if (timer) window.clearTimeout(timer);
+    };
   }, [props.id, props["data-ad-slot"]]);
   return (
     <div className="ad-placeholder" style={{ textAlign: "center", paddingBlock: 12 }}>
