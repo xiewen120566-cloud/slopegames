@@ -13,11 +13,6 @@ route = "slopegames.net/*"
 [build]
 command = "node -e \"require('fs').rmSync('.open-next',{recursive:true,force:true})\" && opennextjs-cloudflare build"
 
-# 资源绑定配置
-[assets]
-directory = ".open-next/assets"
-binding = "ASSETS"
-
 # 可观测性配置
 [observability]
 enabled = true
