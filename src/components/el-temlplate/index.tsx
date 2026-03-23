@@ -19,7 +19,7 @@ const ElTemplate = forwardRef<HTMLModElement, AdTemplateProps>(function AdTempla
   useAdDisplay(`#${props.id}`);
   const { id, ...rest } = props;
   return (
-    <div className="ad-placeholder" style={{ textAlign: "center", paddingBlock: 12 }}>
+    <div className="ad-placeholder" style={{ textAlign: "center", paddingBlock: 12, minHeight: 90 }}>
       <ins
         id={id}
         ref={ref}

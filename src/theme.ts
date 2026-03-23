@@ -56,8 +56,8 @@ export default extendTheme({
           backgroundSize: "auto 100%, auto 100%"
         }
       },
-      "ins.adsbygoogle[data-ad-status='unfilled']": {
-        display: 'none'
+      "ins.adsbygoogle[data-ad-status='unfilled']:not(#goplaygame-Home-Banner):not(#gameworkspace-Home-Banner)": {
+        display: "none"
       },
       "#description a" : {
         color: "cyan.500"
