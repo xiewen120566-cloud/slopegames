@@ -58,7 +58,7 @@ export default async function Page({
           id="goplaygame-Home-Banner"
           className="adsbygoogle"
           data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2282977275"
+          data-ad-slot="2203654449"
           data-ad-format="auto"
           data-full-width-responsive="true"
           style={{ display: "block" }}
@@ -67,9 +67,8 @@ export default async function Page({
           id="goplaygame-Home-MultiAd"
           className="adsbygoogle"
           data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2203654449"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
+          data-ad-slot="2282977275"
+          data-ad-format="autorelaxed"
           style={{ display: "block" }}
         />
         <VStack alignItems="stretch" gap={5}>

@@ -13,6 +13,7 @@ import {
   Heading,
   Flex,
 } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
 
 interface Props {
   params: {
@@ -32,6 +33,7 @@ import { CATEGORY_BG_MAP, CATEGORY_HEADING_COLOR_MAP } from "@/configs";
 import { getTranslations } from "next-intl/server";
 import GameItem from "@/components/game-item";
 import { randomGames } from "@/utils";
+const ElTemplate = dynamic(() => import("@/components/el-temlplate"), { ssr: false })
 
 
 export default async function Page({
@@ -72,6 +74,15 @@ export default async function Page({
       </style>
       <Header categories={categories} hostname={hostname} />
       <Container maxWidth="container.xl" p={0}>
+        <ElTemplate 
+          id="goplaygame-Category-Banner"
+          className="adsbygoogle"
+          data-ad-client="ca-pub-3991461507516186"
+          data-ad-slot="2203654449"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+          style={{ display: "block" }}
+        />
         <VStack alignItems="stretch" gap={5}>
           <Card
             bg="transparent"
