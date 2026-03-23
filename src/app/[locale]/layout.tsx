@@ -31,6 +31,28 @@ export default async function LocaleLayout({
         crossOrigin="anonymous"
         strategy="beforeInteractive"
       />
+
+      {/* <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-0FKCXR93S2"
+        crossOrigin="anonymous"
+        strategy="beforeInteractive"
+      />
+
+      <Script
+        id="googletagmanager-gtag-javascript"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            window.dataLayer.push(arguments)
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-0FKCXR93S2')
+          `,
+        }}
+      /> */}
       {/* ttq 像素追踪  */}
       <Script
         id="tiktok-pixel-javascript"
