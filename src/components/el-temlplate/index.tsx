@@ -17,18 +17,19 @@ interface AdTemplateProps {
 const ElTemplate = forwardRef<HTMLModElement, AdTemplateProps>(function AdTemplate(props, ref) {
   useAdDisplay(`#${props.id}`);
   useEffect(() => {
-    let cancelled = false;
-    const run = () => {
-      if (cancelled) return;
+    const timer = window.setTimeout(() => {
+      const ins = document.getElementById(props.id);
+      if (!ins) return;
+      const status = ins.getAttribute("data-adsbygoogle-status") || ins.getAttribute("data-ad-status");
+      if (status) return;
       try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        const w = window as unknown as { adsbygoogle?: unknown[] };
+        const q = (w.adsbygoogle ?? []) as unknown[];
+        w.adsbygoogle = q;
+        q.push({});
       } catch {}
-    };
-    const timer = window.setTimeout(run, 0);
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timer);
-    };
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [props.id, props["data-ad-slot"]]);
   return (
     <div className="ad-placeholder" style={{ textAlign: "center", paddingBlock: 12 }}>
