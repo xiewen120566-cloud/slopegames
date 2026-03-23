@@ -145,6 +145,14 @@ export default async function Page({
           </Card>
           <Info locale={locale} />
         </VStack>
+        <ElTemplate 
+          id="goplaygame-Category-MultiAd"
+          className="adsbygoogle"
+          data-ad-client="ca-pub-3991461507516186"
+          data-ad-slot="2282977275"
+          data-ad-format="autorelaxed"
+          style={{ display: "block" }}
+        />
       </Container>
       <Footer />
     </>

@@ -108,14 +108,6 @@ export default async function Page({
           data-full-width-responsive="true"
           style={{ display: "block" }}
         />
-        <ElTemplate 
-          id="goplaygame-Detail-MultiAd"
-          className="adsbygoogle"
-          data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2282977275"
-          data-ad-format="autorelaxed"
-          style={{ display: "block" }}
-        />
       </Container>
       <Box mb={8}>
         <Container maxWidth="container.xl" p={0}>
@@ -226,6 +218,14 @@ export default async function Page({
           </CardBody>
         </Card>
         <Info locale={locale} />
+        <ElTemplate 
+          id="goplaygame-Detail-MultiAd"
+          className="adsbygoogle"
+          data-ad-client="ca-pub-3991461507516186"
+          data-ad-slot="2282977275"
+          data-ad-format="autorelaxed"
+          style={{ display: "block" }}
+        />
       </Container>
       <Footer />
     </>
