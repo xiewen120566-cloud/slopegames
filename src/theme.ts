@@ -2,7 +2,7 @@ import { defineStyle, extendTheme, type ThemeConfig } from "@chakra-ui/react";
 
 
 const config: ThemeConfig = {
-  initialColorMode: "light",
+  initialColorMode: "dark",
   useSystemColorMode: false,
 };
 
@@ -23,8 +23,28 @@ export default extendTheme({
           900: "#001d66",
       },
       bg: {
-        default: "#fcfdfe",
-        _dark: "#14151e"
+        default: "#08090d",
+        _dark: "#08090d"
+      },
+      "surface.1": {
+        default: "#12141c",
+        _dark: "#12141c",
+      },
+      "surface.2": {
+        default: "#171a23",
+        _dark: "#171a23",
+      },
+      "border.subtle": {
+        default: "rgba(255,255,255,0.12)",
+        _dark: "rgba(255,255,255,0.12)",
+      },
+      "text.primary": {
+        default: "#f5f7ff",
+        _dark: "#f5f7ff",
+      },
+      "text.muted": {
+        default: "#a2abc0",
+        _dark: "#a2abc0",
       },
       "drawer.dialog.bg": {
         default: "gray.50",
@@ -35,12 +55,17 @@ export default extendTheme({
   styles: {
     global: defineStyle({
       "html, body": {
-        minHeight: "100%"
+        minHeight: "100%",
+        bg: "#08090d",
+        color: "#f5f7ff"
       },
       body: {
         minW: "320px",
-        bg: "#F5F5F5",
-        color: "#666666"
+        bg: "#08090d",
+        color: "#f5f7ff"
+      },
+      "#__next": {
+        bg: "#08090d"
       },
       ".star": {
         "&.full" : {
@@ -61,6 +86,27 @@ export default extendTheme({
       },
       "#description a" : {
         color: "cyan.500"
+      },
+      "a": {
+        color: "inherit"
+      },
+      ".gpt-sticky-bottom": {
+        position: "fixed",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 2147483647,
+        display: "flex",
+        justifyContent: "center",
+        pointerEvents: "none",
+        "@media (min-width: 768px)": {
+          display: "none"
+        }
+      },
+      ".gpt-sticky-bottom__inner": {
+        pointerEvents: "auto",
+        minWidth: "320px",
+        minHeight: "50px"
       }
     }),
   },

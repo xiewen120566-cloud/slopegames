@@ -1,7 +1,7 @@
 import { Locale } from "@/i18n/routing";
 import { GameRecord } from "@/services/data";
 import { getTargetHref } from "@/utils";
-import { AspectRatio, Heading, LinkBox, LinkOverlay } from "@chakra-ui/react";
+import { AspectRatio, Box, Heading, LinkBox, LinkOverlay } from "@chakra-ui/react";
 import Image from "next/image";
 
 const GameItem = ({
@@ -18,35 +18,38 @@ const GameItem = ({
   }
   return (
     <LinkBox
-      rounded={{ base: "md", md: "lg", lg: "xl" }}
+      bg="surface.1"
+      border="1px solid"
+      borderColor="border.subtle"
+      rounded={{ base: "lg", md: "xl" }}
       overflow="hidden"
-      position="relative"
+      transition="transform 160ms ease, box-shadow 160ms ease"
+      _hover={{ transform: "translateY(-2px)", boxShadow: "lg" }}
     >
-      <AspectRatio ratio={1}>
-        <Image alt={data?.name} width={200} height={200} src={data?.image} priority={false} />
+      <AspectRatio ratio={16 / 9}>
+        <Image
+          alt={data?.name}
+          width={480}
+          height={270}
+          src={data?.image}
+          priority={false}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
       </AspectRatio>
-      <LinkOverlay
-        href={getTargetHref(locale, `/detail/${data.id}`, channel)}
-      >
-        <Heading
-          width="full"
-          noOfLines={1}
-          px={2}
-          py={1}
-          as="h5"
-          lineHeight={1.5}
-          size="xs"
-          fontSize="xs"
-          position="absolute"
-          left={0}
-          bottom={0}
-          zIndex={2}
-          background="blackAlpha.700"
-          color="white"
-        >
-          {data.name}
-        </Heading>
-      </LinkOverlay>
+      <Box px={2.5} py={2}>
+        <LinkOverlay href={getTargetHref(locale, `/detail/${data.id}`, channel)}>
+          <Heading
+            as="h5"
+            size="xs"
+            fontSize="sm"
+            lineHeight={1.4}
+            color="text.primary"
+            noOfLines={1}
+          >
+            {data.name}
+          </Heading>
+        </LinkOverlay>
+      </Box>
     </LinkBox>
   );
 };

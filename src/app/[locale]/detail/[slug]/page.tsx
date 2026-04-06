@@ -17,8 +17,6 @@ import {
   AspectRatio,
   Box,
   Button,
-  Card,
-  CardBody,
   Container,
   Flex,
   Heading,
@@ -27,7 +25,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import { CATEGORY_BG_MAP } from "@/configs";
 import { getTargetHref, randomGames} from "@/utils";
 const ElTemplate = dynamic(() => import("@/components/el-temlplate"), { ssr: false })
 interface Props {
@@ -76,156 +73,98 @@ export default async function Page({
   }
   return (
     <>
-      <style>
-        {`
-      body {
-        background: ${CATEGORY_BG_MAP[category.alias]}
-      } 
-`}
-      </style>
       <Header hostname={hostname} categories={categories} />
-      <AspectRatio
-        ratio={{ base: 16 / 9, md: 3 / 1 }}
-        objectFit="contain"
-        rounded="none"
-        overflow="hidden"
-      >
-        <Image
-          alt={game.name}
-          width={200}
-          height={200}
-          src={game.image}
-          priority={false}
-        />
-      </AspectRatio>
-      <Container maxWidth="container.xl" p={0}>
-        <ElTemplate 
-          id="goplaygame-Detail-MultiAd"
-          className="adsbygoogle"
-          data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2282977275"
-          data-ad-format="autorelaxed"
-          style={{ display: "block" }}
+      <Container maxWidth="container.xl" px={{ base: 3, md: 4, lg: 6 }} pt={{ base: 4, md: 6 }}>
+        <ElTemplate
+          id="div-gpt-ad-1775487047646-0"
+          style={{ minWidth: 300, minHeight: 250 }}
         />
       </Container>
-      <Box mb={8}>
-        <Container maxWidth="container.xl" p={0}>
-          <Card
-            shadow="unset"
-            rounded="unset"
-            size={{ base: "sm", md: "md", lg: "lg" }}
-            bg="transparent"
-          >
-            <CardBody pt={0}>
-              <Flex gap={3} alignItems="flex-start">
-                <Box flex={1} position="relative" maxW="128px">
-                  <AspectRatio
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    w="full"
-                    ratio={1}
-                    objectFit="contain"
-                    rounded="full"
-                    border="4px solid"
-                    color="white"
-                    borderColor="#f7faff"
-                    overflow="hidden"
-                    marginTop="-50%"
-                  >
-                    <Image
-                      alt={game.name}
-                      width={200}
-                      height={200}
-                      src={game.image}
-                      priority={false}
-                    />
-                  </AspectRatio>
-                </Box>
-
-                <Box flex={2}>
-                  <Heading lineHeight={1.5} size="lg" p={2} pl={0} as="h2">
-                    {game.name}
-                  </Heading>
-                  <StarRating
-                      size="12px"
-                      rating={getLikes()}
-                      color="#ffaa25"
-                    />
-                  <Flex gap={2} py={2} alignItems="center">
-                    <Box fontSize="2xs">BY</Box>
-                    <Tag
-                      fontSize="2xs"
-                      size="sm"
-                      rounded="sm"
-                      colorScheme="cyan"
-                    >
-                      {category?.name}
-                    </Tag>
-                  </Flex>
-                </Box>
-              </Flex>
-              <Flex justifyContent="center" py={3}>
-                <Button
-                  colorScheme="cyan"
-                  size="lg"
-                  width="260px"
-                  rounded="full"
-                  as="a"
-                  rel="noopener noreferrer"
-                  href={getTargetHref(
-                    locale,
-                    `/play/${slug}`,
-                    searchParams?.channel
-                  )}
-                  rightIcon={<FaCirclePlay />}
-                >
-                  {t("Play")}
-                </Button>
-              </Flex>
-              <Heading as="h3" size="md" py={3}>
-                {t("Introduction")}
-              </Heading>
-              <Text>{game.description}</Text>
-            </CardBody>
-          </Card>
-        </Container>
-      </Box>
-      <Container maxWidth="container.xl" p={0}>
-        <Card
-          shadow="unset"
-          rounded="unset"
-          size={{ base: "sm", md: "md", lg: "lg" }}
-          bg="transparent"
-        >
-          <CardBody pt={0}>
-            <SimpleGrid
-              gap={3}
-              columns={{ base: 3, sm: 4, md: 6, lg: 8, xl: 12 }}
+      <Container maxWidth="container.xl" px={{ base: 3, md: 4, lg: 6 }} py={{ base: 4, md: 6 }}>
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap={{ base: 4, md: 6, lg: 10 }}>
+          <Box>
+            <AspectRatio
+              ratio={{ base: 16 / 9, md: 1 }}
+              rounded={{ base: "xl", md: "2xl" }}
+              overflow="hidden"
+              bg="surface.1"
+              border="1px solid"
+              borderColor="border.subtle"
             >
-              {typeGames.map((item) => {
-                return (
-                  <GameItem
-                    key={item?.id}
-                    data={item}
-                    locale={locale}
-                    channel={searchParams?.channel}
-                  />
-                );
-              })}
-            </SimpleGrid>
-          </CardBody>
-        </Card>
+              <Image
+                alt={game.name}
+                width={600}
+                height={600}
+                src={game.image}
+                priority={false}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </AspectRatio>
+          </Box>
+          <Box
+            bg="surface.1"
+            border="1px solid"
+            borderColor="border.subtle"
+            rounded={{ base: "xl", md: "2xl" }}
+            p={{ base: 4, md: 6 }}
+          >
+            <Heading as="h2" size={{ base: "md", md: "lg" }} lineHeight={1.25} color="text.primary">
+              {game.name}
+            </Heading>
+            <Box pt={3}>
+              <StarRating size="12px" rating={getLikes()} color="#ffaa25" />
+            </Box>
+            <Flex gap={2} pt={3} alignItems="center">
+              <Box fontSize="2xs" color="text.muted">
+                BY
+              </Box>
+              <Tag fontSize="2xs" size="sm" rounded="full" colorScheme="cyan">
+                {category?.name}
+              </Tag>
+            </Flex>
+            <Box pt={{ base: 4, md: 5 }}>
+              <Button
+                colorScheme="cyan"
+                size="lg"
+                w="full"
+                rounded="full"
+                as="a"
+                rel="noopener noreferrer"
+                href={getTargetHref(locale, `/play/${slug}`, searchParams?.channel)}
+                rightIcon={<FaCirclePlay />}
+              >
+                {t("Play")}
+              </Button>
+            </Box>
+            <Heading as="h3" size="md" pt={{ base: 6, md: 7 }} pb={3} color="text.primary">
+              {t("Introduction")}
+            </Heading>
+            <Text color="text.muted">{game.description}</Text>
+          </Box>
+        </SimpleGrid>
+      </Container>
+      <Container maxWidth="container.xl" px={{ base: 3, md: 4, lg: 6 }} pb={{ base: 4, md: 6 }}>
+        <Box
+          bg="surface.1"
+          border="1px solid"
+          borderColor="border.subtle"
+          rounded={{ base: "xl", md: "2xl" }}
+          p={{ base: 4, md: 5 }}
+        >
+          <SimpleGrid gap={3} columns={{ base: 3, sm: 4, md: 6, lg: 8, xl: 12 }}>
+            {typeGames.map((item) => {
+              return (
+                <GameItem
+                  key={item?.id}
+                  data={item}
+                  locale={locale}
+                  channel={searchParams?.channel}
+                />
+              );
+            })}
+          </SimpleGrid>
+        </Box>
         <Info locale={locale} />
-        <ElTemplate 
-          id="goplaygame-Detail-Banner"
-          className="adsbygoogle"
-          data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2203654449"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-          style={{ display: "block" }}
-        />
       </Container>
       <Footer />
     </>

@@ -5,13 +5,12 @@ export const runtime = "edge";
 import { getCategories, getGames } from "@/actions";
 import { Locale } from "@/i18n/routing";
 import {
-  Card,
   Container,
   SimpleGrid,
-  CardBody,
   VStack,
   Heading,
   Flex,
+  Box,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 
@@ -25,11 +24,8 @@ interface Props {
 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { splitGames } from "@/utils";
-import GameList from "@/components/game-list";
 import Info from "@/components/info";
 import { notFound } from "next/navigation";
-import { CATEGORY_BG_MAP, CATEGORY_HEADING_COLOR_MAP } from "@/configs";
 import { getTranslations } from "next-intl/server";
 import GameItem from "@/components/game-item";
 import { randomGames } from "@/utils";
@@ -61,36 +57,26 @@ export default async function Page({
   const _list = allGames.filter(
     (item) => item.categoryId === category.id 
   );
-  const categoryByGames = randomGames(_list.length, 50).map((item) => _list[item]);
+  const categoryByGames = randomGames(_list.length, 8).map((item) => _list[item]);
 
   return (
     <>
-      <style>
-        {`
-  body {
-    background-color: ${CATEGORY_BG_MAP[slug]}
-  }
-  `}
-      </style>
       <Header categories={categories} hostname={hostname} />
-      <Container maxWidth="container.xl" p={0}>
-        <ElTemplate 
-          id="goplaygame-Category-MultiAd"
-          className="adsbygoogle"
-          data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2282977275"
-          data-ad-format="autorelaxed"
-          style={{ display: "block" }}
+      <Container maxWidth="container.xl" px={{ base: 3, md: 4, lg: 6 }} py={{ base: 4, md: 6 }}>
+        <ElTemplate
+          id="div-gpt-ad-1775487047646-0"
+          style={{ minWidth: 300, minHeight: 250 }}
         />
-        <VStack alignItems="stretch" gap={5}>
-          <Card
-            bg="transparent"
-            shadow="unset"
-            rounded="unset"
-            size={{ base: "sm", md: "md", lg: "lg" }}
+        <VStack alignItems="stretch" gap={{ base: 6, md: 8 }}>
+          <Box
+            bg="surface.1"
+            border="1px solid"
+            borderColor="border.subtle"
+            rounded={{ base: "xl", md: "2xl" }}
+            overflow="hidden"
           >
-            <CardBody>
-              <Flex pt={6} alignItems="center" gap={3}>
+            <Box px={{ base: 4, md: 5 }} py={{ base: 4, md: 5 }}>
+              <Flex alignItems="center" gap={3}>
                 {/* <Image
                   alt={t("Games", { category: category.name })}
                   src={`/static/images/category/${category.alias}.png`}
@@ -100,7 +86,7 @@ export default async function Page({
                 /> */}
                 <Heading
                   fontSize={{ base: "md", md: "xl" }}
-                  color={CATEGORY_HEADING_COLOR_MAP[category.alias]}
+                  color="text.primary"
                   textTransform="uppercase"
                 >
                   {t("Games", { category: category.name })}
@@ -108,51 +94,22 @@ export default async function Page({
               </Flex>
               <SimpleGrid
                 pt={{ base: 3, md: 4, lg: 6 }}
-                columns={{ base: 1, md: 3 }}
+                columns={{ base: 2, sm: 3, md: 4, lg: 6 }}
                 gap={{ base: 3, md: 4, lg: 6 }}
               >
-                {splitGames(categoryByGames.slice(0, 18)).map(
-                  (sliceGames, sliceIndex) => {
-                    const spans = [0, 1, 3];
-                    return (
-                      <GameList
-                        key={sliceIndex}
-                        data={sliceGames}
-                        locale={locale}
-                        channel={searchParams?.channel}
-                        spanIndex={spans[sliceIndex]}
-                      />
-                    );
-                  }
-                )}
-              </SimpleGrid>
-              <SimpleGrid
-                pt={{ base: 3, md: 4, lg: 6 }}
-                gap={{ base: 3, md: 4, lg: 6 }}
-                columns={{ base: 3, md: 9 }}
-              >
-                {categoryByGames.slice(18).map((item,index) => (
+                {categoryByGames.map((item, index) => (
                   <GameItem
-                    key={index}
+                    key={`${item?.id ?? "game"}-${index}`}
                     data={item}
                     locale={locale}
                     channel={searchParams?.channel}
                   />
                 ))}
               </SimpleGrid>
-            </CardBody>
-          </Card>
+            </Box>
+          </Box>
           <Info locale={locale} />
         </VStack>
-        <ElTemplate 
-          id="goplaygame-Category-Banner"
-          className="adsbygoogle"
-          data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2203654449"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-          style={{ display: "block" }}
-        />
       </Container>
       <Footer />
     </>
