@@ -52,8 +52,12 @@ export default async function Page({
       <Header hostname={hostname} categories={categories} />
       <Container maxWidth="container.xl" px={{ base: 3, md: 4, lg: 6 }} py={{ base: 4, md: 6 }}>
         <ElTemplate
-          id="div-gpt-ad-1775487047646-0"
-          style={{ minWidth: 300, minHeight: 250 }}
+          id="goplaygame-Home-MultiAd"
+          className="adsbygoogle"
+          data-ad-client="ca-pub-3991461507516186"
+          data-ad-slot="2282977275"
+          data-ad-format="autorelaxed"
+          style={{ display: "block" }}
         />
         <VStack alignItems="stretch" gap={{ base: 6, md: 8 }}>
           <Box
