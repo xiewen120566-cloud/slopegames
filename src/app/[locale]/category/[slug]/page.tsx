@@ -114,6 +114,15 @@ export default async function Page({
           </Box>
           <Info locale={locale} />
         </VStack>
+        <ElTemplate
+          id="goplaygame-Category-Banner"
+          className="adsbygoogle"
+          data-ad-client="ca-pub-3991461507516186"
+          data-ad-slot="2203654449"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+          style={{ display: "block" }}
+        />
       </Container>
       <Footer />
     </>
