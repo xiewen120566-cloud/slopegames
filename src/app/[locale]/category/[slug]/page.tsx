@@ -29,7 +29,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import GameItem from "@/components/game-item";
 import { randomGames } from "@/utils";
-const GptAd = dynamic(() => import("@/components/gpt-ad"), { ssr: false });
+const ElTemplate = dynamic(() => import("@/components/el-temlplate"), { ssr: false });
 
 
 export default async function Page({
@@ -63,12 +63,13 @@ export default async function Page({
     <>
       <Header categories={categories} hostname={hostname} />
       <Container maxWidth="container.xl" px={{ base: 3, md: 4, lg: 6 }} py={{ base: 4, md: 6 }}>
-        <GptAd
-          adId="div-gpt-ad-1776844152136-0"
-          adUnitPath="/23346479587/Acgg-Banner"
-          sizes={[[300, 50], [300, 100], [300, 250], [320, 50]]}
-          minWidth={300}
-          minHeight={50}
+        <ElTemplate
+          id="goplaygame-Category-MultiAd"
+          className="adsbygoogle"
+          data-ad-client="ca-pub-3991461507516186"
+          data-ad-slot="2282977275"
+          data-ad-format="autorelaxed"
+          style={{ display: "block" }}
         />
         <VStack alignItems="stretch" gap={{ base: 6, md: 8 }}>
           <Box
@@ -113,12 +114,14 @@ export default async function Page({
           </Box>
           <Info locale={locale} />
         </VStack>
-        <GptAd
-          adId="div-gpt-ad-1776844152136-1"
-          adUnitPath="/23346479587/Acgg-Banner"
-          sizes={[[300, 50], [300, 100], [300, 250], [320, 50]]}
-          minWidth={300}
-          minHeight={50}
+        <ElTemplate
+          id="goplaygame-Category-Banner"
+          className="adsbygoogle"
+          data-ad-client="ca-pub-3991461507516186"
+          data-ad-slot="2203654449"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+          style={{ display: "block" }}
         />
       </Container>
       <Footer />

@@ -27,7 +27,7 @@ export default async function LocaleLayout({
     <BaseLayout locale={locale}>
       <Script
         async
-        src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3991461507516186"
         crossOrigin="anonymous"
         strategy="beforeInteractive"
       />
