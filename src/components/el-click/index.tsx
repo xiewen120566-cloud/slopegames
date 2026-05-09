@@ -17,16 +17,20 @@ const ElClick: React.FC = () => {
   const isBlurTriggered = useRef<boolean>(false);
   const isBeforeUnloadHandled = useRef<boolean>(false);
 
+  const findAdContainer = useCallback((iframe: HTMLIFrameElement) => {
+    return iframe.closest(".adsbygoogle, [id^='div-gpt-ad-'], [id*='gpt-ad']");
+  }, []);
+
   const collectAdData = useCallback(() => {
     try {
       const activeElement = document.activeElement as HTMLIFrameElement | null;
       if (!activeElement || activeElement.tagName !== "IFRAME") return null;
 
-      const adContainer = activeElement.closest(".adsbygoogle");
+      const adContainer = findAdContainer(activeElement);
       const iframeSrc = activeElement.getAttribute("src");
       if (adContainer && iframeSrc) {
-        const formatIframeSrc = new URL(iframeSrc)
-        const iframeSearchParams = new URLSearchParams(formatIframeSrc.search)
+        const formatIframeSrc = new URL(iframeSrc);
+        const iframeSearchParams = new URLSearchParams(formatIframeSrc.search);
         return {
           adContainerId: adContainer.getAttribute("id"),
           googleQueryId: activeElement.getAttribute("data-google-query-id"),
@@ -35,7 +39,8 @@ const ElClick: React.FC = () => {
           adk: iframeSearchParams.get("adk"),
           adf: iframeSearchParams.get("adf"),
           slotname: iframeSearchParams.get("slotname"),
-          adSize: iframeSearchParams.get("format")
+          adSize: iframeSearchParams.get("format"),
+          adSystem: adContainer.classList.contains("adsbygoogle") ? "adsense" : "adx",
         };
       }
       return null;
@@ -43,7 +48,7 @@ const ElClick: React.FC = () => {
       console.error("Error collecting ad data:", error);
       return null;
     }
-  }, []);
+  }, [findAdContainer]);
 
   const trackAdClick = useCallback(() => {
     const adData = collectAdData();

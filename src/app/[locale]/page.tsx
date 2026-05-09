@@ -20,7 +20,7 @@ import Info from "@/components/info";
 import { getTranslations } from "next-intl/server";
 import GameItem from "@/components/game-item";
 import { FaChevronRight } from "react-icons/fa6";
-const ElTemplate = dynamic(() => import("@/components/el-temlplate"), { ssr: false })
+const GptAd = dynamic(() => import("@/components/gpt-ad"), { ssr: false })
 interface Props {
   params: {
     locale: Locale;
@@ -51,13 +51,12 @@ export default async function Page({
     <>
       <Header hostname={hostname} categories={categories} />
       <Container maxWidth="container.xl" px={{ base: 3, md: 4, lg: 6 }} py={{ base: 4, md: 6 }}>
-        <ElTemplate
-          id="goplaygame-Home-MultiAd"
-          className="adsbygoogle"
-          data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2282977275"
-          data-ad-format="autorelaxed"
-          style={{ display: "block" }}
+        <GptAd
+          adId="div-gpt-ad-1778325355784-0"
+          adUnitPath="/23346479587/Acgg-Banner"
+          sizes={[[300, 50], [320, 50], [300, 100], [300, 250]]}
+          minWidth={300}
+          minHeight={50}
         />
         <VStack alignItems="stretch" gap={{ base: 6, md: 8 }}>
           <Box
@@ -211,14 +210,12 @@ export default async function Page({
           })}
           <Info locale={locale} />
         </VStack>
-        <ElTemplate
-          id="goplaygame-Home-Banner"
-          className="adsbygoogle"
-          data-ad-client="ca-pub-3991461507516186"
-          data-ad-slot="2203654449"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-          style={{ display: "block" }}
+        <GptAd
+          adId="div-gpt-ad-1778325355784-1"
+          adUnitPath="/23346479587/Acgg-Banner"
+          sizes={[[300, 50], [320, 50], [300, 100], [300, 250]]}
+          minWidth={300}
+          minHeight={50}
         />
       </Container>
       <Footer />
